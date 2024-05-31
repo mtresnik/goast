@@ -57,7 +57,7 @@ func (d Division) ToNumber() complex128 {
 
 func (d Division) Evaluate(one operations.Operation, other operations.Operation) operations.Operation {
 	return Division{
-		Numerator:   d.Evaluate(one, other),
-		Denominator: d.Evaluate(one, other),
+		Numerator:   d.Numerator.Evaluate(one, other),
+		Denominator: d.Denominator.Evaluate(one, other),
 	}
 }

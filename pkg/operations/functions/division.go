@@ -38,6 +38,12 @@ func (d Division) ToString() string {
 }
 
 func (d Division) ToNumber() complex128 {
+	if operations.Equals(d.Numerator, d.Denominator) {
+		return 1
+	}
+	if d.IsConstant() == false {
+		return cmplx.NaN()
+	}
 	if d.Numerator.IsConstant() && d.Denominator.IsConstant() {
 		var numerator = d.Numerator.ToNumber()
 		var denominator = d.Denominator.ToNumber()
@@ -48,9 +54,6 @@ func (d Division) ToNumber() complex128 {
 			return cmplx.Inf()
 		}
 		return numerator / denominator
-	}
-	if operations.Equals(d.Numerator, d.Denominator) {
-		return 1
 	}
 	return cmplx.NaN()
 }

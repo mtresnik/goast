@@ -9,8 +9,8 @@ import (
 const (
 	Number = iota
 	Operator
-	OpenParentheses
-	ClosedParentheses
+	OpenParenthesis
+	ClosedParenthesis
 	Text
 	Function
 	Variable
@@ -107,11 +107,6 @@ func ContainsAll(oneList []Token, otherList []Token) bool {
 	}
 	for _, token := range oneList {
 		if ContainsToken(otherList, token) == false {
-			return false
-		}
-	}
-	for _, token := range otherList {
-		if ContainsToken(oneList, token) == false {
 			return false
 		}
 	}

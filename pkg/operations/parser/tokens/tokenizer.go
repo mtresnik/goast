@@ -13,8 +13,8 @@ const (
 	Decimal                    = '.'
 	ValidNumbers               = "0123456789."
 	Operators                  = "+-*/^"
-	OpenParenthesesCharacter   = '('
-	ClosedParenthesesCharacter = ')'
+	OpenParenthesisCharacter   = '('
+	ClosedParenthesisCharacter = ')'
 )
 
 func Tokenize(inputStringParam string) []Token {
@@ -39,21 +39,20 @@ func tokenizeNumbers(inputString string) []Token {
 	var accumulate = ""
 	for i, v := range inputString {
 		if strings.ContainsRune(ValidNumbers, v) == false {
-			if utf8.RuneCountInString(accumulate) == 0 {
-				continue
+			if utf8.RuneCountInString(accumulate) != 0 {
+				var start = i - utf8.RuneCountInString(accumulate)
+				var end = i - 1
+				var representation = strings.Clone(accumulate)
+				var number = Token{
+					StartIndex:     start,
+					EndIndex:       end,
+					TokenType:      Number,
+					Representation: &representation,
+				}
+				retArray[count] = number
+				count++
+				accumulate = ""
 			}
-			var start = i - utf8.RuneCountInString(accumulate)
-			var end = i - 1
-			var representation = strings.Clone(accumulate)
-			var number = Token{
-				StartIndex:     start,
-				EndIndex:       end,
-				TokenType:      Number,
-				Representation: &representation,
-			}
-			retArray[count] = number
-			count++
-			accumulate = ""
 		} else {
 			accumulate += string(v)
 		}
@@ -76,7 +75,6 @@ func tokenizeNumbers(inputString string) []Token {
 
 func tokenizeOperators(tokenList []Token, inputString string) []Token {
 	retList := slices.Clone(tokenList)
-	SortByStartIndex(retList)
 	for i, v := range inputString {
 		if IndexProcessed(i, retList) == false {
 			if strings.ContainsRune(Operators, v) {
@@ -87,35 +85,31 @@ func tokenizeOperators(tokenList []Token, inputString string) []Token {
 			}
 		}
 	}
-	SortByStartIndex(retList)
 	return retList
 }
 
 func tokenizeParentheses(tokenList []Token, inputString string) []Token {
 	retList := slices.Clone(tokenList)
-	SortByStartIndex(retList)
 	for i, v := range inputString {
 		if IndexProcessed(i, retList) == false {
-			if v == OpenParenthesesCharacter {
+			if v == OpenParenthesisCharacter {
 				var representation = strings.Clone(string(v))
-				var parenthesis = SingleIndex(i, OpenParentheses)
+				var parenthesis = SingleIndex(i, OpenParenthesis)
 				parenthesis.Representation = &representation
 				retList = append(retList, parenthesis)
-			} else if v == ClosedParenthesesCharacter {
+			} else if v == ClosedParenthesisCharacter {
 				var representation = strings.Clone(string(v))
-				var parenthesis = SingleIndex(i, ClosedParentheses)
+				var parenthesis = SingleIndex(i, ClosedParenthesis)
 				parenthesis.Representation = &representation
 				retList = append(retList, parenthesis)
 			}
 		}
 	}
-	SortByStartIndex(retList)
 	return retList
 }
 
 func tokenizeText(tokenList []Token, inputString string) []Token {
 	retList := slices.Clone(tokenList)
-	SortByStartIndex(retList)
 	var accumulated = ""
 	for i, v := range inputString {
 		if IndexProcessed(i, retList) {
@@ -158,7 +152,7 @@ func tokenizeFunctions(tokenList []Token) []Token {
 		if curr.TokenType != Text {
 			retList = append(retList, curr)
 		} else {
-			if i < len(tokenList)-1 && (tokenList[i+1]).TokenType == OpenParentheses {
+			if i < len(tokenList)-1 && (tokenList[i+1]).TokenType == OpenParenthesis {
 				var innerFunc = ""
 				var foundInner = false
 				var representation = *curr.Representation
@@ -171,7 +165,7 @@ func tokenizeFunctions(tokenList []Token) []Token {
 					}
 				}
 				if foundInner {
-					var endIndex = strings.Index(representation, innerFunc)
+					var endIndex = strings.LastIndex(representation, innerFunc)
 					if endIndex != 0 {
 						var newRep = utils.Substring(representation, 0, endIndex)
 						var rem = NullIndex(Text, &newRep)
@@ -260,10 +254,10 @@ func justifyMultiplication(inputList []Token) []Token {
 	var retList = make([]Token, 0)
 	for i, curr := range inputList {
 		retList = append(retList, curr)
-		if (curr.TokenType == Number || curr.TokenType == Variable || curr.TokenType == ClosedParentheses) &&
+		if (curr.TokenType == Number || curr.TokenType == Variable || curr.TokenType == ClosedParenthesis) &&
 			i < len(inputList)-1 &&
 			inputList[i+1].TokenType != Operator &&
-			inputList[i+1].TokenType != ClosedParentheses {
+			inputList[i+1].TokenType != ClosedParenthesis {
 			var representation = "*"
 			retList = append(retList, NullIndex(Operator, &representation))
 		}

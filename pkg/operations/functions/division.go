@@ -2,8 +2,8 @@ package functions
 
 import (
 	"goast/pkg/operations"
+	"goast/pkg/utils"
 	"math/cmplx"
-	"strconv"
 )
 
 type Division struct {
@@ -28,7 +28,7 @@ func (d Division) IsConstant() bool {
 func (d Division) ToString() string {
 	if d.IsConstant() {
 		c := d.ToNumber()
-		return strconv.FormatComplex(c, 'f', 5, 64)
+		return utils.SmartComplexString(c)
 	}
 	retString := ""
 	retString += d.Numerator.ToString()

@@ -2,8 +2,8 @@ package functions
 
 import (
 	"goast/pkg/operations"
+	"goast/pkg/utils"
 	"math/cmplx"
-	"strconv"
 )
 
 type Sin struct {
@@ -21,7 +21,7 @@ func (s Sin) IsConstant() bool {
 func (s Sin) ToString() string {
 	if s.Inner.IsConstant() {
 		c := s.ToNumber()
-		return strconv.FormatComplex(c, 'f', 5, 64)
+		return utils.SmartComplexString(c)
 	}
 	retString := "sin("
 	retString += s.Inner.ToString()

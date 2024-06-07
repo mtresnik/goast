@@ -2,8 +2,8 @@ package functions
 
 import (
 	"goast/pkg/operations"
+	"goast/pkg/utils"
 	"math/cmplx"
-	"strconv"
 )
 
 type Parentheses struct {
@@ -21,7 +21,7 @@ func (p Parentheses) IsConstant() bool {
 func (p Parentheses) ToString() string {
 	if p.Inner.IsConstant() {
 		c := p.Inner.ToNumber()
-		return strconv.FormatComplex(c, 'f', 5, 64)
+		return utils.SmartComplexString(c)
 	}
 	retString := "("
 	retString += p.Inner.ToString()

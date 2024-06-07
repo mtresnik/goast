@@ -2,8 +2,8 @@ package functions
 
 import (
 	"goast/pkg/operations"
+	"goast/pkg/utils"
 	"math/cmplx"
-	"strconv"
 )
 
 type Log struct {
@@ -22,9 +22,9 @@ func (l Log) IsConstant() bool {
 func (l Log) ToString() string {
 	if l.Inner.IsConstant() {
 		c := l.ToNumber()
-		return strconv.FormatComplex(c, 'f', 5, 64)
+		return utils.SmartComplexString(c)
 	}
-	retString := "log("
+	retString := "log_("
 	retString += l.Base.ToString() + ", "
 	retString += l.Inner.ToString()
 	retString += ")"

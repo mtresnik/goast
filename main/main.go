@@ -14,7 +14,7 @@ func main() {
 
 func TestParse() {
 	var inputString = "a * b * c + 123 + sin(x)"
-	var parsed, err = parser.Parse(inputString)
+	var parsed, err = parser.ParseOperation(inputString)
 	if err != nil {
 		fmt.Println((*err).Error())
 		return

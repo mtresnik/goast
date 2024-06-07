@@ -2,8 +2,8 @@ package functions
 
 import (
 	"goast/pkg/operations"
+	"goast/pkg/utils"
 	"math/cmplx"
-	"strconv"
 )
 
 type Multiplication struct {
@@ -27,7 +27,7 @@ func (m Multiplication) IsConstant() bool {
 func (m Multiplication) ToString() string {
 	if m.IsConstant() {
 		c := m.ToNumber()
-		return strconv.FormatComplex(c, 'f', 5, 64)
+		return utils.SmartComplexString(c)
 	}
 	retString := ""
 	var values = m.GetValues()

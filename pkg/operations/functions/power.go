@@ -2,8 +2,8 @@ package functions
 
 import (
 	"goast/pkg/operations"
+	"goast/pkg/utils"
 	"math/cmplx"
-	"strconv"
 )
 
 type Power struct {
@@ -25,7 +25,7 @@ func (p Power) IsConstant() bool {
 func (p Power) ToString() string {
 	if p.IsConstant() {
 		c := p.ToNumber()
-		return strconv.FormatComplex(c, 'f', 5, 64)
+		return utils.SmartComplexString(c)
 	}
 	retString := p.Base.ToString()
 	retString += " ^ "

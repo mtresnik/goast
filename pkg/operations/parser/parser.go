@@ -423,7 +423,7 @@ func Remove(intermediates []Intermediate, other Intermediate) []Intermediate {
 	return intermediates
 }
 
-func Parse(inputString string) (operations.Operation, *error) {
+func ParseOperation(inputString string) (operations.Operation, *error) {
 	err := validateString(inputString)
 	if err != nil {
 		return constants.NaN, err
@@ -730,7 +730,7 @@ func generateOperators(current []Intermediate, inputList []tokens.Token) []Inter
 }
 
 func generateIdentities(current []Intermediate, inputList []tokens.Token) []Intermediate {
-	var clone = slices.Clone(current)
+	var clone = current
 	for i, token := range inputList {
 		if indexProcessedOperation(i, clone) == false {
 			if token.TokenType == tokens.Operator {
@@ -762,13 +762,13 @@ func generateIdentities(current []Intermediate, inputList []tokens.Token) []Inte
 			}
 		}
 	}
-	var retList = slices.Clone(clone)
+	var retList = clone
 	SortByStartIndex(retList)
 	return retList
 }
 
 func generatePowers(current []Intermediate, inputList []tokens.Token) []Intermediate {
-	var clone = slices.Clone(current)
+	var clone = current
 	for i, token := range inputList {
 		if indexProcessedOperation(i, clone) == false {
 			if token.TokenType == tokens.Operator {
@@ -790,14 +790,14 @@ func generatePowers(current []Intermediate, inputList []tokens.Token) []Intermed
 			}
 		}
 	}
-	var retList = slices.Clone(clone)
+	var retList = clone
 	SortByStartIndex(retList)
 	return retList
 }
 
 func generateMultiplicationAndDivision(current []Intermediate, inputList []tokens.Token) []Intermediate {
 	// TODO Require left and right checks for mult and div
-	var clone = slices.Clone(current)
+	var clone = current
 	for i, token := range inputList {
 		if indexProcessedOperation(i, clone) == false {
 			if token.TokenType == tokens.Operator {
@@ -831,14 +831,14 @@ func generateMultiplicationAndDivision(current []Intermediate, inputList []token
 			}
 		}
 	}
-	var retList = slices.Clone(clone)
+	var retList = clone
 	SortByStartIndex(retList)
 	return retList
 }
 
 func generateAdditionAndSubtraction(current []Intermediate, inputList []tokens.Token) []Intermediate {
 	// TODO Require left and right checks for add and sub
-	var clone = slices.Clone(current)
+	var clone = current
 	for i, token := range inputList {
 		if indexProcessedOperation(i, clone) == false {
 			if token.TokenType == tokens.Operator {
@@ -873,7 +873,7 @@ func generateAdditionAndSubtraction(current []Intermediate, inputList []tokens.T
 		}
 	}
 
-	var retList = slices.Clone(clone)
+	var retList = clone
 	SortByStartIndex(retList)
 	return retList
 }

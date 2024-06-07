@@ -2,8 +2,8 @@ package functions
 
 import (
 	"goast/pkg/operations"
+	"goast/pkg/utils"
 	"math/cmplx"
-	"strconv"
 )
 
 type Cos struct {
@@ -21,7 +21,7 @@ func (c Cos) IsConstant() bool {
 func (c Cos) ToString() string {
 	if c.Inner.IsConstant() {
 		c := c.ToNumber()
-		return strconv.FormatComplex(c, 'f', 5, 64)
+		return utils.SmartComplexString(c)
 	}
 	retString := "cos("
 	retString += c.Inner.ToString()

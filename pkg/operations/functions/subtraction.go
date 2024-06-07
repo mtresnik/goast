@@ -2,8 +2,8 @@ package functions
 
 import (
 	"goast/pkg/operations"
+	"goast/pkg/utils"
 	"math/cmplx"
-	"strconv"
 )
 
 type Subtraction struct {
@@ -27,7 +27,7 @@ func (s Subtraction) IsConstant() bool {
 func (s Subtraction) ToString() string {
 	if s.IsConstant() {
 		c := s.ToNumber()
-		return strconv.FormatComplex(c, 'f', 5, 64)
+		return utils.SmartComplexString(c)
 	}
 	retString := ""
 	for i := 0; i < len(s.Values); i++ {

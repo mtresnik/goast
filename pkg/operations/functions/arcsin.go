@@ -2,8 +2,8 @@ package functions
 
 import (
 	"goast/pkg/operations"
+	"goast/pkg/utils"
 	"math/cmplx"
-	"strconv"
 )
 
 type ArcSin struct {
@@ -21,7 +21,7 @@ func (a ArcSin) IsConstant() bool {
 func (a ArcSin) ToString() string {
 	if a.Inner.IsConstant() {
 		c := a.ToNumber()
-		return strconv.FormatComplex(c, 'f', 5, 64)
+		return utils.SmartComplexString(c)
 	}
 	retString := "arcsin("
 	retString += a.Inner.ToString()

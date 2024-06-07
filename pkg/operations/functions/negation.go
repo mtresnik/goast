@@ -2,8 +2,8 @@ package functions
 
 import (
 	"goast/pkg/operations"
+	"goast/pkg/utils"
 	"math/cmplx"
-	"strconv"
 )
 
 type Negation struct {
@@ -21,7 +21,7 @@ func (n Negation) IsConstant() bool {
 func (n Negation) ToString() string {
 	if n.Inner.IsConstant() {
 		c := n.ToNumber()
-		return strconv.FormatComplex(c, 'f', 5, 64)
+		return utils.SmartComplexString(c)
 	}
 	retString := "-"
 	retString += n.Inner.ToString()

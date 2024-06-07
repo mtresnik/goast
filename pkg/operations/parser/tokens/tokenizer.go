@@ -12,7 +12,7 @@ import (
 const (
 	Decimal                    = '.'
 	ValidNumbers               = "0123456789."
-	Operators                  = "+-*/^"
+	Operators                  = "+-*/^,"
 	OpenParenthesisCharacter   = '('
 	ClosedParenthesisCharacter = ')'
 )
@@ -74,7 +74,7 @@ func tokenizeNumbers(inputString string) []Token {
 }
 
 func tokenizeOperators(tokenList []Token, inputString string) []Token {
-	retList := slices.Clone(tokenList)
+	retList := tokenList
 	for i, v := range inputString {
 		if IndexProcessed(i, retList) == false {
 			if strings.ContainsRune(Operators, v) {
@@ -89,7 +89,7 @@ func tokenizeOperators(tokenList []Token, inputString string) []Token {
 }
 
 func tokenizeParentheses(tokenList []Token, inputString string) []Token {
-	retList := slices.Clone(tokenList)
+	retList := tokenList
 	for i, v := range inputString {
 		if IndexProcessed(i, retList) == false {
 			if v == OpenParenthesisCharacter {
@@ -109,7 +109,7 @@ func tokenizeParentheses(tokenList []Token, inputString string) []Token {
 }
 
 func tokenizeText(tokenList []Token, inputString string) []Token {
-	retList := slices.Clone(tokenList)
+	retList := tokenList
 	var accumulated = ""
 	for i, v := range inputString {
 		if IndexProcessed(i, retList) {

@@ -27,3 +27,9 @@ func TestTokenize4(t *testing.T) {
 	var result = Tokenize(inputString)
 	fmt.Println(ToString(result))
 }
+
+func TestTokenize5(t *testing.T) {
+	var inputString = "log_(x,y)"
+	var result = Tokenize(inputString)
+	fmt.Println(ToString(result))
+}

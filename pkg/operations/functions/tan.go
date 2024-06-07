@@ -2,8 +2,8 @@ package functions
 
 import (
 	"goast/pkg/operations"
+	"goast/pkg/utils"
 	"math/cmplx"
-	"strconv"
 )
 
 type Tan struct {
@@ -21,7 +21,7 @@ func (t Tan) IsConstant() bool {
 func (t Tan) ToString() string {
 	if t.Inner.IsConstant() {
 		c := t.ToNumber()
-		return strconv.FormatComplex(c, 'f', 5, 64)
+		return utils.SmartComplexString(c)
 	}
 	retString := "tan("
 	retString += t.Inner.ToString()

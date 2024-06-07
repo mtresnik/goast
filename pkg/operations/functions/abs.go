@@ -2,8 +2,8 @@ package functions
 
 import (
 	"goast/pkg/operations"
+	"goast/pkg/utils"
 	"math/cmplx"
-	"strconv"
 )
 
 type Abs struct {
@@ -21,7 +21,7 @@ func (a Abs) IsConstant() bool {
 func (a Abs) ToString() string {
 	if a.Inner.IsConstant() {
 		c := a.ToNumber()
-		return strconv.FormatComplex(c, 'f', 5, 64)
+		return utils.SmartComplexString(c)
 	}
 	retString := "abs("
 	retString += a.Inner.ToString()

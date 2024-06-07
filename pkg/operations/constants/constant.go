@@ -2,7 +2,7 @@ package constants
 
 import (
 	"goast/pkg/operations"
-	"strconv"
+	"goast/pkg/utils"
 )
 
 type Constant struct {
@@ -22,7 +22,7 @@ func (c Constant) ToString() string {
 	if c.StringRepresentation != nil {
 		return *(c.StringRepresentation)
 	}
-	return strconv.FormatComplex(c.Representation, 'G', 5, 64)
+	return utils.SmartComplexString(c.Representation)
 }
 
 func (c Constant) ToNumber() complex128 {

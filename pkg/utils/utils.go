@@ -2,6 +2,7 @@ package utils
 
 import (
 	"reflect"
+	"strconv"
 	"strings"
 	"unicode/utf8"
 )
@@ -134,4 +135,23 @@ func Keys[M ~map[K]V, K comparable, V any](m M) []K {
 		r = append(r, k)
 	}
 	return r
+}
+
+func SmartComplexString(c complex128) string {
+	if imag(c) == 0 {
+		return strconv.FormatFloat(real(c), 'G', 5, 64)
+	}
+	return strconv.FormatComplex(c, 'G', 5, 64)
+}
+
+func SliceToString(array []int64) string {
+	retString := "["
+	for i, v := range array {
+		retString += strconv.Itoa(int(v))
+		if i < len(array)-1 {
+			retString += ", "
+		}
+	}
+	retString += "]"
+	return retString
 }

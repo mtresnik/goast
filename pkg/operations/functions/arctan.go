@@ -2,8 +2,8 @@ package functions
 
 import (
 	"goast/pkg/operations"
+	"goast/pkg/utils"
 	"math/cmplx"
-	"strconv"
 )
 
 type ArcTan struct {
@@ -21,7 +21,7 @@ func (a ArcTan) IsConstant() bool {
 func (a ArcTan) ToString() string {
 	if a.Inner.IsConstant() {
 		c := a.ToNumber()
-		return strconv.FormatComplex(c, 'f', 5, 64)
+		return utils.SmartComplexString(c)
 	}
 	retString := "arctan("
 	retString += a.Inner.ToString()

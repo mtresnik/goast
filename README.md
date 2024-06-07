@@ -1,5 +1,5 @@
 # goast
-[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://github.com/mtresnik/math/blob/main/LICENSE)
+[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://github.com/mtresnik/goast/blob/main/LICENSE)
 [![version](https://img.shields.io/badge/version-1.0.1-blue)](https://github.com/mtresnik/goast/releases/tag/v1.0.1)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-green.svg?style=flat-square)](https://makeapullrequest.com)
 <hr>

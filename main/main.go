@@ -2,10 +2,10 @@ package main
 
 import (
 	"fmt"
-	"goast/pkg/operations/constants"
-	"goast/pkg/operations/functions"
-	"goast/pkg/operations/parser"
-	"goast/pkg/operations/variables"
+"github.com/mtresnik/goast/pkg/operations/constants"
+"github.com/mtresnik/goast/pkg/operations/functions"
+"github.com/mtresnik/goast/pkg/operations/parser"
+"github.com/mtresnik/goast/pkg/operations/variables"
 )
 
 func main() {

@@ -2,7 +2,7 @@ package constants
 
 import (
 	"fmt"
-	"goast/pkg/operations"
+	"github.com/mtresnik/goast/pkg/operations"
 	"testing"
 )
 

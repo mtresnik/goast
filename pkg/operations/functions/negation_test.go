@@ -2,7 +2,7 @@ package functions
 
 import (
 	"fmt"
-	"goast/pkg/operations/constants"
+	"github.com/mtresnik/goast/pkg/operations/constants"
 	"testing"
 )
 

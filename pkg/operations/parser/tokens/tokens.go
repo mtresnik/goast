@@ -2,7 +2,7 @@ package tokens
 
 import (
 	"fmt"
-	"goast/pkg/utils"
+	"github.com/mtresnik/goast/pkg/utils"
 	"sort"
 )
 

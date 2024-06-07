@@ -2,9 +2,9 @@ package parser
 
 import (
 	"fmt"
-	"goast/pkg/operations/constants"
-	"goast/pkg/operations/functions"
-	"goast/pkg/operations/variables"
+	"github.com/mtresnik/goast/pkg/operations/constants"
+	"github.com/mtresnik/goast/pkg/operations/functions"
+	"github.com/mtresnik/goast/pkg/operations/variables"
 	"testing"
 )
 

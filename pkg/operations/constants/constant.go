@@ -1,8 +1,8 @@
 package constants
 
 import (
-	"goast/pkg/operations"
-	"goast/pkg/utils"
+	"github.com/mtresnik/goast/pkg/operations"
+	"github.com/mtresnik/goast/pkg/utils"
 )
 
 type Constant struct {

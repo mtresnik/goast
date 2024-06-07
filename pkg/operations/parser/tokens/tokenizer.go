@@ -1,9 +1,9 @@
 package tokens
 
 import (
-	"goast/pkg/operations/functions"
-	"goast/pkg/operations/variables"
-	"goast/pkg/utils"
+	"github.com/mtresnik/goast/pkg/operations/functions"
+	"github.com/mtresnik/goast/pkg/operations/variables"
+	"github.com/mtresnik/goast/pkg/utils"
 	"slices"
 	"strings"
 	"unicode/utf8"

@@ -1,7 +1,7 @@
 package variables
 
 import (
-	"goast/pkg/operations"
+	"github.com/mtresnik/goast/pkg/operations"
 	"strconv"
 )
 

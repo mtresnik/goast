@@ -2,7 +2,7 @@ package parser
 
 import (
 	"fmt"
-	"goast/pkg/utils"
+	"github.com/mtresnik/goast/pkg/utils"
 	"strconv"
 	"testing"
 	"time"

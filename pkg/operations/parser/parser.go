@@ -2,12 +2,12 @@ package parser
 
 import (
 	"fmt"
-	"goast/pkg/operations"
-	"goast/pkg/operations/constants"
-	"goast/pkg/operations/functions"
-	"goast/pkg/operations/parser/tokens"
-	"goast/pkg/operations/variables"
-	"goast/pkg/utils"
+	"github.com/mtresnik/goast/pkg/operations"
+	"github.com/mtresnik/goast/pkg/operations/constants"
+	"github.com/mtresnik/goast/pkg/operations/functions"
+	"github.com/mtresnik/goast/pkg/operations/parser/tokens"
+	"github.com/mtresnik/goast/pkg/operations/variables"
+	"github.com/mtresnik/goast/pkg/utils"
 	"slices"
 	"sort"
 	"strconv"
